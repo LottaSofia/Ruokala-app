@@ -1,28 +1,34 @@
-package com.example.lottasofiatuominen.ht;
+package com.example.lottasofiatuominen.yliopistonruokalat;
+
+import java.util.ArrayList;
 
 public class Ravintola {
     private String nimi;
     private int ID;
+    private ArrayList<Ruoka> ruokalista = new ArrayList<>();
+    Ruoka ruoka;
 
-    public Ravintola(String n, int r) {
+    public Ravintola(String n, int i, String[] list) {
         nimi = n;
-        ID = r;
-    }
+        ID = i;
 
-    public void setNimi(String new_nimi) {
-        nimi = new_nimi;
+        for (int j=0; j<list.length;j++) {
+            ruoka = new Ruoka(list[j]);
+            ruokalista.add(ruoka);
+        }
     }
-
-    public void setID(int new_ID) {
-        ID = new_ID;
+    public String getNimi() {
+        return nimi;
     }
-
     public int getID() {
         return ID;
+    }
+    public ArrayList<Ruoka> getRuokalista() {
+        return ruokalista;
     }
     public String toString() {
         return nimi;
     }
+
+
 }
-
-
