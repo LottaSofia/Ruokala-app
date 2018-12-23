@@ -12,6 +12,8 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 public class Arvostele extends AppCompatActivity {
+    // In this activity the user can review foods
+
     TextView textView, textView2;
     RatingBar ratingBar;
     Button submitButton, button;
@@ -45,20 +47,26 @@ public class Arvostele extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // when the user presses the button to save and go back, the review is saved here
+
                 String review = editText.getText().toString();
                 String reviewer = editText2.getText().toString();
                 String t = String.valueOf(ratingBar.getRating());
                 RRuoka.UusiArvostelu(review,ratingBar.getRating(),reviewer);
+
+                // update the xml file
                 xmlFile.writeXML(context);
                 Intent intent = new Intent();
                 intent.putExtra("rate",t);
                 setResult(Activity.RESULT_OK,intent);
+                // back to the main activity
                 finish();
             }
         });
     }
 
     public void submitRate(View v) {
+        // when user presses the button he's given the option to edit before saving
 
         String review = editText.getText().toString();
         System.out.println(review);
@@ -74,6 +82,8 @@ public class Arvostele extends AppCompatActivity {
     }
 
     public Ruoka mikaRavintola(String t, String ID){
+        //finds put witch restaurant and food the user is going to rate
+
         for (int i = 0; i < yliopisto.getRavintolat().size(); i++) {
             rav = yliopisto.getRavintolat().get(i);
             if (String.valueOf(rav.getID()).equals(ID) == true) {

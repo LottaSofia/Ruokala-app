@@ -1,6 +1,9 @@
 package com.example.lottasofiatuominen.yliopistonruokalat;
 
 public class Arvostelu {
+
+    // class that has in it the reviewer's name, review text and rating
+
     private String arvostelu;
     private float arvosana;
     private String arvostelija;

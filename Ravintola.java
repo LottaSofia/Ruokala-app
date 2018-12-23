@@ -3,6 +3,9 @@ package com.example.lottasofiatuominen.yliopistonruokalat;
 import java.util.ArrayList;
 
 public class Ravintola {
+
+    // class that has in it the name and ID for a restaurants as well as the menu as a arraylist made of foods
+
     private String nimi;
     private int ID;
     private ArrayList<Ruoka> ruokalista = new ArrayList<>();

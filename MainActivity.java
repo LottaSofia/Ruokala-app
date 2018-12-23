@@ -28,11 +28,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         yliopisto = Yliopisto.getInstance();
         context = MainActivity.this;
-        //XMLFile editXML = new XMLFile();
-
-        //editXML.writeXML(context);
-        //editXML.readXML();
-
         buttonSelaa = (Button) findViewById(R.id.buttonSelaa);
 
         spinner = (Spinner) findViewById(R.id.spinner);
@@ -45,8 +40,10 @@ public class MainActivity extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                // Get the restaurant from the spinner which menu you want to see
+
                 Ravintola rav = (Ravintola) spinner.getSelectedItem();
-                System.out.println("Ravintolan id: " + rav.getID());
+                //System.out.println("Ravintolan id: " + rav.getID());
                 int ID = rav.getID();
                 makeSpinner(rav,ID);
             }
@@ -73,18 +70,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void makeSpinner(Ravintola rav, final int ID){
-        System.out.println(rav.getRuokalista());
+        // fill the spinner with the chosen restaurant's menu
+
+        //System.out.println(rav.getRuokalista());
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, rav.getRuokalista());
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner2.setAdapter(adapter);
         buttonArv = (Button) findViewById(R.id.buttonAr);
 
+        // When the user presses the button to review new activity "Arvostele" starts
         buttonArv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 System.out.println("Valittu ruoka: " + spinner2.getSelectedItem());
                 String text = spinner2.getSelectedItem().toString();
                 Intent myintent = new Intent(v.getContext(), Arvostele.class);
+
+                // We take the food and ID of the restaurant to the activity
                 myintent.putExtra("text", text);
                 myintent.putExtra("ID", String.valueOf(ID));
                 startActivityForResult(myintent, REQUEST_CODE);
@@ -94,6 +96,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void reviews(View v) {
+        // start activity "SelaaArvosteluja" to see all of the reviews
+
         Intent myintent = new Intent(v.getContext(), SelaaArvosteluja.class);
         startActivity(myintent);
     }

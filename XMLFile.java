@@ -98,7 +98,7 @@ public class XMLFile {
                     Element element = (Element) node;
                     System.out.print("Ruoka: ");
                     System.out.println(element.getElementsByTagName("food").item(0).getTextContent());
-                    try {
+                    try { // if the food has a rating it is added to the arraylist that's been created for the activity "selaaArvosteluja"
                         System.out.println(element.getElementsByTagName("rate").item(0).getTextContent());
                         System.out.println(element.getElementsByTagName("words").item(0).getTextContent());
 

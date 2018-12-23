@@ -3,6 +3,8 @@ package com.example.lottasofiatuominen.yliopistonruokalat;
 import java.util.ArrayList;
 
 public class Ruoka {
+    // class for foods and review arraylist
+
     private String ruoka;
     Arvostelu new_arvostelu;
     ArrayList<Arvostelu> arvostelut = new ArrayList<>();

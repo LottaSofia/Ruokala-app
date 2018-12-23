@@ -3,6 +3,8 @@ package com.example.lottasofiatuominen.yliopistonruokalat;
 import java.util.ArrayList;
 
 public class Yliopisto {
+    // class that creates restaurants and their menus and has the information of the restaurants
+
     private ArrayList<Ravintola> ravintolat = new ArrayList<>();
     private static Yliopisto bd = new Yliopisto();
     Ravintola new_ravintola;

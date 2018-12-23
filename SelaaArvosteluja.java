@@ -24,9 +24,10 @@ public class SelaaArvosteluja extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selaa_arvosteluja);
 
-
-        list = xmlFile.readXML();
+        list = xmlFile.readXML(); // gets the arraylist of all reviews
         int i = 0;
+
+        // this next loop separates the foods, rates, reviews and reviewer's names on different arraylists
         if (list.size() != 0) {
             do {
                 System.out.println(i + " " + list.get(i));
@@ -43,6 +44,7 @@ public class SelaaArvosteluja extends AppCompatActivity {
         }
         listView = (ListView) findViewById(R.id.listView);
 
+        // makes the list view of all of the reviews
         CustomAdapter customAdapter = new CustomAdapter();
         listView.setAdapter(customAdapter);
 
