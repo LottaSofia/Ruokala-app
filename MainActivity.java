@@ -1,9 +1,7 @@
 package com.example.lottasofiatuominen.yliopistonruokalat;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -20,7 +18,6 @@ public class MainActivity extends AppCompatActivity {
     Yliopisto yliopisto;
     Button buttonArv, buttonSelaa;
     Context context;
-    XMLFile editXML;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,21 +50,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        String s = "";
-        switch (requestCode) {
-            case REQUEST_CODE:
-                if (resultCode == Activity.RESULT_OK) {
-                    String rate = data.getStringExtra("rate");
-                    System.out.println(rate);
-                } else {
-                    System.out.println("Ei paluu arvoa.");
 
-                }
-
-        }
-    }
 
     public void makeSpinner(Ravintola rav, final int ID){
         // fill the spinner with the chosen restaurant's menu

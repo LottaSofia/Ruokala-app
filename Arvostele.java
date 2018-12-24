@@ -24,6 +24,8 @@ public class Arvostele extends AppCompatActivity {
     Ruoka ruoka, RRuoka;
     XMLFile xmlFile = new XMLFile();
     Context context = Arvostele.this;
+    String review;
+    String reviewer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,42 +46,47 @@ public class Arvostele extends AppCompatActivity {
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
         submitButton = (Button) findViewById(R.id.button);
         button = (Button) findViewById(R.id.button2);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // when the user presses the button to save and go back, the review is saved here
 
-                String review = editText.getText().toString();
-                String reviewer = editText2.getText().toString();
-                String t = String.valueOf(ratingBar.getRating());
-                RRuoka.UusiArvostelu(review,ratingBar.getRating(),reviewer);
-
-                // update the xml file
-                xmlFile.writeXML(context);
-                Intent intent = new Intent();
-                intent.putExtra("rate",t);
-                setResult(Activity.RESULT_OK,intent);
-                // back to the main activity
-                finish();
-            }
-        });
     }
 
     public void submitRate(View v) {
         // when user presses the button he's given the option to edit before saving
 
-        String review = editText.getText().toString();
+        final String review = editText.getText().toString();
         System.out.println(review);
         rate = ratingBar.getRating();
+        final String reviewer = editText2.getText().toString();
 
         String s = "Annoit annokselle arvosanaksi " + ratingBar.getRating() + " jos haluat voit korjata arvosanan antamalla nyt uuden.";
         textView2.setText(s);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // when the user presses the button to save and go back, the review is saved here
+
+                if (review.equals("") == true || ratingBar.getRating() == 0 || reviewer.equals("") == true) {
+                    textView2.setText("Kaikkiin ruutuihin tulee vastata, jotta voit tallenaa!");
+
+                }else {
+                    RRuoka.UusiArvostelu(review, ratingBar.getRating(), reviewer);
+
+                    // update the xml file
+                    xmlFile.writeXML(context);
+                    Intent intent = new Intent();
+
+                    // back to the main activity
+                    finish();
+                }
+            }
+        });
+
     }
 
 
-    public static Intent makeIntent(Context context) {
+    /*public static Intent makeIntent(Context context) {
         return new Intent(context, Arvostelu.class);
-    }
+    }*/
 
     public Ruoka mikaRavintola(String t, String ID){
         //finds put witch restaurant and food the user is going to rate
